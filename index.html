@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration for keciezmi event</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+        }
+
+        button {
+            background-color: limegreen;
+            border: none;
+            border-radius: 2px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: rgb(99, 255, 99);
+        }
+
+        button:active {
+            background-color: rgb(134, 238, 134);
+        }
+
+        input {
+            width: 500px;
+            height: 30px;
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="Registration">
+        <h1>Only 200 people are going to be chosen. Please read the rules before you start this <strong>challenge</strong></h1>
+        <input type="text" id="discordusername" placeholder="Enter your Discord username" required>
+        <label>No Hacking</label>
+        <input type="checkbox" id="Nohacking">
+        <label>No Scamming</label>
+        <input type="checkbox" id="Noscamming">
+        <label>Age</label>
+        <input type="number" id="age" placeholder="Please enter your age" required>
+        <button id="Checkage" type="submit">Check age</button>
+        <input type="email" id="Email" placeholder="Enter your email" required>
+        <input type="password" id="Password" placeholder="Enter your password" required>
+        <input type="text" id="Over18+" style="display: none;" placeholder="Enter Your Phone Number">
+    </div>
+    <a href="">Rules</a>
+    <div id="Finished" style="display: none;">
+        <h1>Thanks for your registration. We hope to see you in the challenge!</h1>
+        <h2>These are the mods you must install to join the server.<br>Minecraft version: 1.20.1</h2>
+        <a href="https://modrinth.com/mod/goatman/versions?g=1.20.1">Goat man</a>
+        <a href="https://modrinth.com/mod/john_mod_reborn/versions">John mod</a>
+        <a href="https://modrinth.com/mod/the-man-from-the-fog/versions?g=1.20.1">The man from the frog</a>
+        <a href="https://modrinth.com/plugin/simple-voice-chat/versions?g=1.20.1&l=forge">Voice chat</a>
+    </div>
+    <button type="submit" id="Submit">Submit</button>
+    <script>
+        const discord = document.getElementById('discordusername');
+        const Hacking = document.getElementById('Nohacking');
+        const Scamming = document.getElementById('Noscamming');
+        const age = document.getElementById('age');
+        const Email = document.getElementById('Email');
+        const Password = document.getElementById('Password');
+        const submit = document.getElementById('Submit');
+        const checkage = document.getElementById('Checkage');
+
+        checkage.onclick = function() {
+            const ageValue = Number(age.value);
+            if (ageValue > 18) {
+                document.getElementById('Over18+').style.display = 'block';
+            } else if (age.value == '') {
+                alert(`Please put your age`);
+            }
+        }
+
+        submit.onclick = function() {
+            if (checkage.click == false) {
+                alert(`Please click the age button`);
+            }
+
+            if (discord.value == '') {
+                alert('Please enter your discord username');
+            }
+
+            if (!Hacking.checked || !Scamming.checked) {
+                alert(`You can't join the event for not following the rules. Please read the rules.`);
+                return; // Exit if rules are not followed
+            }
+
+            // If all checks pass
+            document.getElementById('Finished').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
